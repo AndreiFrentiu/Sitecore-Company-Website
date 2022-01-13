@@ -1,0 +1,9 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Page_Templates.Privacy_Policy_Page.IPrivacyPolicyInformation
+@using Glass.Mapper.Sc.Web.Mvc
+
+<!-- Privacy-policy -->
+<section id="privacy-policy" class="container">
+    <h3>@Html.Glass().Editable(x => x.Title)</h3>
+    @Html.Glass().Editable(x => x.PrivacyInformation)
+</section>
+<!-- /privacy-policy -->

@@ -1,0 +1,34 @@
+﻿@model List<SitecoreCompanyWebsite.Feature.PageContent.Models.Layout_Templates.NavigationHelper>
+
+@{
+    string HomeUrl = "";
+    foreach (var item in Model)
+    {
+        if (item.Name.Equals("Home"))
+        {
+            HomeUrl = item.Url;
+            break;
+        }
+    }
+}
+
+<header class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a id="logo" class="pull-left" href=@HomeUrl></a>
+            <div class="nav-collapse collapse pull-right">
+                <ul class="nav">
+                    @foreach (var item in Model)
+                    {
+                        <li><a href=@item.Url>@item.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>

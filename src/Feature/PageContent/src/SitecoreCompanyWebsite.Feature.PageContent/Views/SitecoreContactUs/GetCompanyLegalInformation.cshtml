@@ -1,0 +1,49 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Page_Templates.Contact_Us_Page.ICompanyLegalInformation
+@using Glass.Mapper.Sc.Web.Mvc
+
+<section class="no-margin">
+    <div id="map" style="height:200px;"></div>
+</section>
+
+<section id="contact-page" class="container">
+    <div class="row-fluid">
+        <div class="span8">
+            <h4>Contact Form</h4>
+            <div class="status alert alert-success" style="display: none"></div>
+            <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="contact-us.send.php">
+                <div class="row-fluid">
+                    <div class="span5">
+                        <label>Full Name</label>
+                        <input type="text" class="input-block-level" required="required" placeholder="Your Full Name" id="name" name="name">
+                        <label>Email Address</label>
+                        <input type="text" class="input-block-level" required="required" placeholder="Your Email Address" id="email" name="email">
+                        <label>Telephone</label>
+                        <input type="text" class="input-block-level" required="required" placeholder="Your Telephone" id="phone" name="phone">
+                    </div>
+                    <div class="span7">
+                        <label>Message</label>
+                        <textarea name="message" id="message" required="required" class="input-block-level" rows="8"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large pull-right">Send Message</button>
+            </form>
+        </div>
+        <div class="span3">
+            <div style="height:60px"></div>
+            <h4>@Html.Glass().Editable(x => x.Title)</h4>
+            <p>@Html.Glass().Editable(x => x.Description)</p>
+            <p>
+                <i class="icon-map-marker pull-left"></i> @Html.Glass().Editable(x => x.Adress)
+            </p>
+            <p>
+                <i class="icon-envelope"></i> &nbsp;<a href="@Html.Glass().Editable(x => x.CompanyLink)">@Html.Glass().Editable(x => x.CompanyEmail)</a>
+            </p>
+            <p>
+                <i class="icon-phone"></i> &nbsp;@Html.Glass().Editable(x => x.Telephone)
+            </p>
+            <p>
+                <i class="icon-globe"></i> &nbsp;<a href="@Html.Glass().Editable(x => x.DomainLink)">@Html.Glass().Editable(x => x.Domain)</a>
+            </p>
+        </div>
+    </div>
+</section>

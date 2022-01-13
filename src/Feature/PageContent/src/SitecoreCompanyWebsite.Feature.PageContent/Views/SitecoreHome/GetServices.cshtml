@@ -1,0 +1,100 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Global_Templates.IListOfServices
+@using Glass.Mapper.Sc.Web.Mvc
+
+@{
+    var list = new List<SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Global_Templates.IService>();
+}
+
+<section id="services">
+    <div class="container">
+        <div class="center gap">
+            <h3>@Html.Glass().Editable(x => x.Title)</h3>
+            <p class="lead">@Html.Glass().Editable(x => x.Description))</p>
+        </div>
+
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            foreach (var item in Model.Items)
+            {
+                list.Add(item);
+                if (list.Count == 3)
+                {
+                    <div class="row-fluid">
+                        @foreach (var service in list)
+                        {
+                            int imageType = Int32.Parse(service.ImageClass);
+                            <div class="span4">
+                                <div class="media">
+                                    <div class="pull-left">
+                                        @switch (imageType)
+                                        {
+                                            case 1:
+                                                <i class="icon-thumbs-up-alt icon-medium"></i>
+                                                break;
+
+                                            case 2:
+                                                <i class="icon-leaf icon-medium icon-rounded"></i>
+                                                break;
+
+                                            case 3:
+                                                <i class="icon-shopping-cart icon-medium"></i>
+                                                break;
+
+                                            default:
+                                                <i class="icon-globe icon-medium"></i>
+                                                break;
+                                        }
+                                    </div>
+                                    <div class="media-body">
+                                        <h4 class="media-heading">@Html.Glass().Editable(service, x => x.Title)</h4>
+                                        <p>@Html.Glass().Editable(service, x => x.Description)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="gap"></div>
+                    list.Clear();
+                }
+            }
+            if (list.Count != 0)
+            {
+                <div class="row-fluid">
+                    @foreach (var service in list)
+                    {
+                        string imageType = service.ImageClass;
+                        <div class="span4">
+                            <div class="media">
+                                <div class="pull-left">
+                                    @switch (service.ImageClass)
+                                    {
+                                        case "icon-thumbs-up-alt icon-medium":
+                                            <i class="icon-thumbs-up-alt icon-medium"></i>
+                                            break;
+
+                                        case "icon-leaf icon-medium icon-rounded":
+                                            <i class="icon-leaf icon-medium icon-rounded"></i>
+                                            break;
+
+                                        case "icon-shopping-cart icon-medium":
+                                            <i class="icon-shopping-cart icon-medium"></i>
+                                            break;
+
+                                        default:
+                                            <i class="icon-globe icon-medium"></i>
+                                            break;
+                                    }
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">@Html.Glass().Editable(x => x.Title)</h4>
+                                    <p>@Html.Glass().Editable(x => x.Description)</p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+
+        }
+        </div>
+</section>

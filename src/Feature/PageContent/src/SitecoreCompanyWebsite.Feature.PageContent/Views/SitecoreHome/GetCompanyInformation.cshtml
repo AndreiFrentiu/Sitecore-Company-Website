@@ -1,0 +1,16 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Page_Templates.Home_Page.ICompanyInformation
+@using Glass.Mapper.Sc.Web.Mvc
+
+<section class="main-info">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span9">
+                <h4>@Html.Glass().Editable(x => x.Title)</h4>
+                <p class="no-margin">@Html.Glass().Editable(x => x.FirstDescription)</p>
+            </div>
+            <div class="span3">
+                <a class="btn btn-success btn-large pull-right" href="#">@Html.Glass().Editable(x => x.SecondDescription)</a>
+            </div>
+        </div>
+    </div>
+</section>

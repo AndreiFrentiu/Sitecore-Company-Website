@@ -1,0 +1,90 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Page_Templates.Home_Page.ISlider
+@using Glass.Mapper.Sc.Web.Mvc
+
+<section id="slide-show">
+    <div id="slider" class="sl-slider-wrapper">
+        <div class="sl-slider">
+
+            @if (Model.Items != null && Model.Items.Any())
+            {
+                foreach (var item in Model.Items)
+                {
+                    string type = item.Style;
+                    switch (type)
+                    {
+                        case "1":
+                            <div class="sl-slide item1" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+                                <div class="sl-slide-inner">
+                                    <div class="container">
+                                        @Html.Glass().Editable(item, x => x.Image, new { @class = "pull-right" })
+                                        <h2>@Html.Glass().Editable(item, x => x.Title)</h2>
+                                        <h3 class="gap">@Html.Glass().Editable(item, x => x.Description)</h3>
+                                        <a class="btn btn-large btn-transparent" href="#">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+
+                        case "2":
+                            <div class="sl-slide item2" data-orientation="vertical" data-slice1-rotation="10" data-slice2-rotation="-15" data-slice1-scale="1.5" data-slice2-scale="1.5">
+                                <div class="sl-slide-inner">
+                                    <div class="container">
+                                        @Html.Glass().Editable(item, x => x.Image, new { @class = "pull-right" })
+                                        <h2>@Html.Glass().Editable(item, x => x.Title)</h2>
+                                        <h3 class="gap">@Html.Glass().Editable(item, x => x.Description)</h3>
+                                        <a class="btn btn-large btn-transparent" href="#">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+
+                        default:
+                            <div class="sl-slide item3" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
+                                <div class="sl-slide-inner">
+                                    <div class="container">
+                                        @Html.Glass().Editable(item, x => x.Image, new { @class = "pull-right" })
+                                        <h2>@Html.Glass().Editable(item, x => x.Title)</h2>
+                                        <h3 class="gap">@Html.Glass().Editable(item, x => x.Description)</h3>
+                                        <a class="btn btn-large btn-transparent" href="#">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                    }
+                }
+            }
+
+        </div>
+        <nav id="nav-arrows" class="nav-arrows">
+            <span class="nav-arrow-prev"><i class="icon-angle-left"></i></span>
+            <span class="nav-arrow-next"><i class="icon-angle-right"></i></span>
+        </nav>
+    </div>
+</section>
+
+<script type="text/javascript">
+
+    $(function () {
+        var Page = (function () {
+            var $navArrows = $('#nav-arrows'),
+                slitslider = $('#slider').slitslider({
+                    autoplay: true
+                }),
+                init = function () {
+                    initEvents();
+                },
+                initEvents = function () {
+                    $navArrows.children(':last').on('click', function () {
+                        slitslider.next();
+                        return false;
+                    });
+                    $navArrows.children(':first').on('click', function () {
+                        slitslider.previous();
+                        return false;
+                    });
+                };
+            return { init: init };
+        })();
+        Page.init();
+    });
+</script>

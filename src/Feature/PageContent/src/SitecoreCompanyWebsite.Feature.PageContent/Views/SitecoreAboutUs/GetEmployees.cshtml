@@ -1,0 +1,29 @@
+﻿@using Glass.Mapper.Sc.Web.Mvc
+@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Page_Templates.AboutUs_Page.IListOfEmployees
+
+<h1 class="center">Company Team</h1>
+<hr>
+<div class="row-fluid">
+    @if (Model.Items != null && Model.Items.Any())
+    {
+        foreach (var employees in Model.Items)
+        {
+            <div class="span3">
+                <div class="box">
+                    <p>@Html.Glass().Editable(employees, x => x.Image)</p>
+                    <h5>@Html.Glass().Editable(employees, x => x.Name)</h5>
+                    <p>@Html.Glass().Editable(employees, x => x.Description)</p>
+                    <a class="btn btn-social btn-facebook" href="@Html.Glass().Editable(employees, x => x.Facebook)"><i class="icon-facebook"></i></a>
+                    <a class="btn btn-social btn-google-plus" href="@Html.Glass().Editable(employees, x => x.Google)"><i class="icon-google-plus"></i></a>
+                    <a class="btn btn-social btn-twitter" href="@Html.Glass().Editable(employees, x => x.Twitter)"><i class="icon-twitter"></i></a>
+                    <a class="btn btn-social btn-linkedin" href="@Html.Glass().Editable(employees, x => x.LinkedIn)"><i class="icon-linkedin"></i></a>
+                </div>
+            </div>
+        }
+    }
+</div>
+<p>&nbsp;</p>
+
+
+
+

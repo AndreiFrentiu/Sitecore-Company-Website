@@ -1,0 +1,64 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Page_Templates.Home_Page.IClientsInformation
+@using Glass.Mapper.Sc.Web.Mvc
+
+@{
+    var list = new List<SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Page_Templates.Home_Page.IClient>();
+    string firstItem = "active item";
+}
+
+<section id="clients" class="main">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span2">
+                <div class="clearfix">
+                    <h4 class="pull-left">@Html.Glass().Editable(x => x.Title)</h4>
+                    <div class="pull-right">
+                        <a class="prev" href="#myCarousel" data-slide="prev"><i class="icon-angle-left icon-large"></i></a> <a class="next" href="#myCarousel" data-slide="next"><i class="icon-angle-right icon-large"></i></a>
+                    </div>
+                </div>
+                <p>@Html.Glass().Editable(x => x.Description)</p>
+            </div>
+            <div class="span10">
+                <div id="myCarousel" class="carousel slide clients">
+                    <div class="carousel-inner">
+                        @if (Model.Items != null)
+                        {
+                            foreach (var item in Model.Items)
+                            {
+                                list.Add(item);
+                                if (list.Count == 4)
+                                {
+                                    <div class=@firstItem>
+                                        <div class="row-fluid">
+                                            <ul class="thumbnails">
+                                                @foreach (var clients in list)
+                                                {
+                                                    <li class="span3"><a href=@clients.Link>@Html.Glass().RenderImage(clients, x => x.Image, isEditable: true)</a></li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    list.Clear();
+                                    firstItem = "item";
+                                }
+                            }
+                            if (list.Count != 0)
+                            {
+                                <div class="item">
+                                    <div class="row-fluid">
+                                        <ul class="thumbnails">
+                                            @foreach (var clients in list)
+                                            {
+                                                <li class="span3"><a href=@clients.Link>@clients.Image</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

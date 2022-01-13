@@ -1,0 +1,109 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Global_Templates.IListOfServices
+@using Glass.Mapper.Sc.Web.Mvc
+
+@{
+    var list = new List<SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Global_Templates.IService>();
+}
+
+<section class="services">
+    <div class="container">
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            foreach (var item in Model.Items)
+            {
+                list.Add(item);
+                if (list.Count == 3)
+                {
+                    <div class="row-fluid">
+                        @foreach (var service in list)
+                        {
+                            int imageType = Int32.Parse(service.ImageClass);
+                            <div class="span4">
+                                <div class="center">
+                                    @switch (imageType)
+                                    {
+                                        case 1:
+                                            <i style="font-size: 48px" class="icon-facetime-video icon-large"></i>
+                                            break;
+
+                                        case 2:
+                                            <i style="font-size: 48px" class="icon-food icon-large"></i>
+                                            break;
+
+                                        case 3:
+                                            <i style="font-size: 48px" class="icon-gamepad icon-large"></i>
+                                            break;
+
+                                        case 4:
+                                            <i style="font-size: 48px" class="icon-puzzle-piece icon-large"></i>
+                                            break;
+
+                                        case 5:
+                                            <i style="font-size: 48px" class="icon-shopping-cart icon-large"></i>
+                                            break;
+
+                                        default:
+                                            <i style="font-size: 48px" class="icon-magic icon-large"></i>
+                                            break;
+                                    }
+                                    <h4><b>@Html.Glass().Editable(service, x => x.Title)</b></h4>
+                                    <p>@Html.Glass().Editable(service, x => x.Description)</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <hr>
+                    list.Clear();
+                }
+            }
+            if (list.Count != 0)
+            {
+                <div class="row-fluid">
+                    @foreach (var service in list)
+                    {
+                        <div class="span4">
+                            <div class="center">
+                                @switch (service.ImageClass)
+                                {
+                                    case "icon-facetime-video icon-large":
+                                        <i style="font-size: 48px" class="icon-facetime-video icon-large"></i>
+                                        break;
+
+                                    case "icon-food icon-large":
+                                        <i style="font-size: 48px" class="icon-food icon-large"></i>
+                                        break;
+
+                                    case "icon-gamepad icon-large":
+                                        <i style="font-size: 48px" class="icon-gamepad icon-large"></i>
+                                        break;
+
+                                    case "icon-puzzle-piece icon-large":
+                                        <i style="font-size: 48px" class="icon-puzzle-piece icon-large"></i>
+                                        break;
+
+                                    case "icon-shopping-cart icon-large":
+                                        <i style="font-size: 48px" class="icon-shopping-cart icon-large"></i>
+                                        break;
+
+                                    default:
+                                        <i style="font-size: 48px" class="icon-magic icon-large"></i>
+                                        break;
+                                }
+                                <p> </p>
+                                <h4><b>@Html.Glass().Editable(service, x => x.Title)</b></h4>
+                                <p>@Html.Glass().Editable(service, x => x.Description)</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <hr>
+            }
+        }
+        <hr>
+        <div class="center">
+            <a class="btn btn-primary btn-large" href="#">Aenean quis mauris efficitur justo gravida accumsan vitae sed neque</a>
+        </div>
+        <p>&nbsp;</p>
+    </div>
+</section>
+

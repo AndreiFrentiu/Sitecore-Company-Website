@@ -1,0 +1,51 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Global_Templates.IListOfWorks
+@using Glass.Mapper.Sc.Web.Mvc
+
+@{
+    int contor = 1;
+    string itemPart1 = "#modal-" + contor;
+    string itemPart2 = "modal-" + contor;
+}
+
+<section id="recent-works">
+    <div class="container">
+        <div class="center">
+            <h3>@Html.Glass().Editable(x => x.Title)</h3>
+            <p class="lead">@Html.Glass().Editable(x => x.Description)</p>
+        </div>
+        <div class="gap"></div>
+        <ul class="gallery col-4">
+
+            @if (Model.Items != null && Model.Items.Any())
+            {
+                foreach (var item in Model.Items)
+                {
+                    <li>
+                        <div class="preview">
+                            @Html.Glass().Editable(item, x => x.Image)
+                            <div class="overlay">
+                            </div>
+                            <div class="links">
+                                <a data-toggle="modal" href=@itemPart1><i class="icon-eye-open"></i></a><a href=@Html.Glass().Editable(item, x => x.Link)><i class="icon-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="desc">
+                            <h5>@Html.Glass().Editable(item, x => x.Title)</h5>
+                        </div>
+                        <div id=@itemPart2 class="modal hide fade">
+                            <a class="close-modal" href="javascript:;" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></a>
+                            <div class="modal-body">
+                                @Html.Glass().Editable(item, x => x.Image, new { @style = "max-height:400px", @width = "100%" })
+                            </div>
+                        </div>
+                    </li>
+
+                    contor++;
+                    itemPart1 = "#modal-" + contor;
+                    itemPart2 = "modal-" + contor;
+                }
+            }
+            </ul>
+    </div>
+</section>
+<!--/Work-->

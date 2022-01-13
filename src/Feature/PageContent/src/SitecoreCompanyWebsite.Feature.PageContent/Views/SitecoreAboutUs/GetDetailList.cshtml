@@ -1,0 +1,32 @@
+﻿@model SitecoreCompanyWebsite.Feature.PageContent.Models.Glass_Mapper.Global_Templates.IListOfSamplePart
+@using Glass.Mapper.Sc.Web.Mvc
+@{
+    List<string> functionality = new List<string> { "#collapseOne", "#collapseTwo", "#collapseThree" };
+    var cont = 0;
+}
+
+<div class="span6">
+    <h3>Praesent Scelerisque</h3>
+    <div class="accordion" id="accordion2">
+        @if (Model.Items != null && Model.Items.Any())
+        {
+            foreach (var item in Model.Items)
+            {
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="@functionality[cont]">
+
+                            @Html.Glass().Editable(item, x => x.Title)
+                        </a>
+                    </div>
+                    <div id="@functionality[cont]" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            @Html.Glass().Editable(item, x => x.Description)
+                        </div>
+                    </div>
+                </div>
+                cont++;
+            }
+        }
+    </div>
+</div>

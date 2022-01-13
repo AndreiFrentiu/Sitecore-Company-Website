@@ -1,0 +1,31 @@
+﻿@using Sitecore.Mvc
+
+<section class="title">
+    <div class="container">
+        <div class="row-fluid">
+            <div class="span6">
+                <h1>About Us</h1>
+            </div>
+            <div class="span6">
+                <ul class="breadcrumb pull-right">
+                    <li><a href="https://companywebsite.dev.local/HomePage">Home</a> <span class="divider">/</span></li>
+                    <li class="active">About Us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about-us" class="container main">
+    <div class="row-fluid">
+        @Html.Sitecore().Placeholder("DetailSpaceOne")
+    </div>
+    <hr>
+
+    <div class="row-fluid">
+        @Html.Sitecore().Placeholder("DetailSpaceTwo")
+    </div>
+    <hr>
+
+    @Html.Sitecore().Placeholder("CompanyTeam")
+</section>
